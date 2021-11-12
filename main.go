@@ -64,7 +64,7 @@ func watchIngresses(clientset *kubernetes.Clientset, records map[string]string) 
 		case watch.Deleted:
 			for _, rule := range event.Object.(*networkingv1.Ingress).Spec.Rules {
 				fmt.Println("Removed: ", rule.Host)
-				delete(records, rule.Host)
+				delete(records, rule.Host+".")
 			}
 		}
 
